@@ -13,25 +13,22 @@ import org.springframework.core.io.ResourceLoader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileAttribute;
 import java.util.Arrays;
 import java.util.stream.IntStream;
+
 
 @SpringBootApplication
 public class DiDemoApplication {
 
     public static void main(String[] args) {
 
-       ApplicationContext ctx= SpringApplication.run(DiDemoApplication.class, args);
-        MyController controller=(MyController)ctx.getBean("myController");
+        ApplicationContext ctx = SpringApplication.run(DiDemoApplication.class, args);
+        MyController controller = (MyController) ctx.getBean("myController");
         controller.hello();
-        int[] tab={1,2,3};
-       IntStream i= Arrays.stream(tab);
-        try {
-            FileOutputStream fileInputStream=new FileOutputStream("Test");
-            fileInputStream.write(i);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
 }
