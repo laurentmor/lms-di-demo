@@ -1,24 +1,13 @@
 package com.lmsolutions.springcourse.didemo;
 
+import com.lmsolutions.springcourse.didemo.controllers.ConstructorInjectedController;
+import com.lmsolutions.springcourse.didemo.controllers.GetterInjectedController;
 import com.lmsolutions.springcourse.didemo.controllers.MyController;
+import com.lmsolutions.springcourse.didemo.controllers.PropertyInjectedController;
+import com.lmsolutions.springcourse.didemo.services.GreetingService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.ProtocolResolver;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.attribute.FileAttribute;
-import java.util.Arrays;
-import java.util.stream.IntStream;
 
 
 @SpringBootApplication
@@ -27,8 +16,19 @@ public class DiDemoApplication {
     public static void main(String[] args) {
 
         ApplicationContext ctx = SpringApplication.run(DiDemoApplication.class, args);
+
         MyController controller = (MyController) ctx.getBean("myController");
+
         controller.hello();
+
+        System.out.println(ctx.getBean(PropertyInjectedController.class).sayHello());
+        System.out.println(ctx.getBean(GetterInjectedController.class).sayHello());
+        System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
+        class Test implements GreetingService {
+
+        }
+        GreetingService service = new Test();
+        System.out.println(service.sayHello());
     }
 
 }
