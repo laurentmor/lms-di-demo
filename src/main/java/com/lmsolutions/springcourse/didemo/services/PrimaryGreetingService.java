@@ -22,24 +22,16 @@
  * SOFTWARE.
  */
 
-package com.lmsolutions.springcourse.didemo.controllers;
+package com.lmsolutions.springcourse.didemo.services;
 
-import com.lmsolutions.springcourse.didemo.services.GreetingService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
-@Controller
-public class GetterInjectedController {
-    private GreetingService greetingService;
-
+@Service
+@Primary
+public class PrimaryGreetingService implements GreetingService {
+    @Override
     public String sayHello() {
-        return greetingService.sayHello();
-    }
-
-
-    @Autowired
-    public void setGreetingService(@Qualifier("getterGreetingService") GreetingService greetingService) {
-        this.greetingService = greetingService;
+        return "Hello from PrimaryGreetingService";
     }
 }
