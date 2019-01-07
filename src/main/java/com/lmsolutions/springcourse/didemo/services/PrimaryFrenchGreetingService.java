@@ -30,10 +30,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Primary
-@Profile("en")
-public class PrimaryGreetingService implements GreetingService {
+@Profile("fr")
+public class PrimaryFrenchGreetingService implements GreetingService {
     @Override
     public String sayHello() {
-        return "Hello from PrimaryGreetingService";
+        return "Bonjour depuis PrimaryGreetingService";
     }
 }
